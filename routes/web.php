@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnioAcademicoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('anio_academico', [AnioAcademicoController::class, 'create'])->name('anio_academico.crear');
+Route::get('anio_academico/guardar', [AnioAcademicoController::class, 'guardar'])->name('anio_academico.guardar');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard.index');
-// });

@@ -24,7 +24,9 @@ class AnioAcademicoController extends Controller
      */
     public function create()
     {
-        //
+        $action = route('anio_academico.guardar');
+        $anio = new Anio_academico();
+        return view('anio_academico.crear')->with(compact('action', 'anio'));
     }
 
     /**
@@ -35,7 +37,9 @@ class AnioAcademicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $anio = new Anio_academico($request->input());
+        $anio->save();
+        return redirect()->route('anio_academico.crear');
     }
 
     /**

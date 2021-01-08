@@ -225,6 +225,16 @@ return [
 
     'menu' => [
         [
+            'text'    => 'mantenimiento',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'anio_academico',
+                    'url'  => 'anio_academico',
+                ],
+            ],
+        ],
+        [
             'text' => 'search',
             'search' => true,
             'topnav' => true,
