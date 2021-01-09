@@ -225,19 +225,23 @@ return [
 
     'menu' => [
         [
-            'text'    => 'mantenimiento',
+            'text'    => 'MANTENIMIENTO',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'anio_academico',
+                    'text' => 'Año Academico',
                     'url'  => 'anio_academico',
+                ],
+                [
+                    'text' => 'Grado',
+                    'url'  => 'grado',
                 ],
             ],
         ],
         [
             'text' => 'search',
-            'search' => true,
-            'topnav' => true,
+            'search' => false,
+            'topnav' => false,
         ],
         [
             'text' => 'blog',

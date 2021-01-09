@@ -26,7 +26,8 @@ class AnioAcademicoController extends Controller
     {
         $action = route('anio_academico.guardar');
         $anio = new Anio_academico();
-        return view('anio_academico.crear')->with(compact('action', 'anio'));
+        $anios = Anio_academico::all();
+        return view('anio_academico.crear')->with(compact('action', 'anio', 'anios'));
     }
 
     /**

@@ -24,7 +24,10 @@ class GradoController extends Controller
      */
     public function create()
     {
-        //
+        $action = route('grado.guardar');
+        $grado = new Grado();
+        $grados = Grado::all();
+        return view('grado.crear')->with(compact('action', 'grado', 'grados'));
     }
 
     /**
@@ -35,7 +38,9 @@ class GradoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $grado = new Grado($request->input());
+        $grado->save();
+        return redirect()->route('grado.crear');
     }
 
     /**
