@@ -226,6 +226,7 @@ return [
     'menu' => [
         [
             'text'    => 'MANTENIMIENTO',
+            'icon_color' => 'cyan',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
@@ -235,6 +236,18 @@ return [
                 [
                     'text' => 'Grado',
                     'url'  => 'grado',
+                ],
+                [
+                    'text' => 'Seccion',
+                    'url'  => 'seccion',
+                ],
+                [
+                    'text' => 'Dia Semana',
+                    'url'  => 'dia_semana',
+                ],
+                [
+                    'text' => 'Evaluacion',
+                    'url'  => 'evaluacion',
                 ],
             ],
         ],
@@ -247,13 +260,6 @@ return [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
         ],
         ['header' => 'account_settings'],
         [

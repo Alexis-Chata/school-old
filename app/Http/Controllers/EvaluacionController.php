@@ -24,7 +24,10 @@ class EvaluacionController extends Controller
      */
     public function create()
     {
-        //
+        $action = route('evaluacion.guardar');
+        $evaluacion = new Evaluacion();
+        $evaluacions = Evaluacion::all();
+        return view('evaluacion.crear')->with(compact('action', 'evaluacion', 'evaluacions'));
     }
 
     /**
@@ -35,7 +38,29 @@ class EvaluacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        list($rules, $messages) = $this->_rules();
+        $this->validate($request, $rules, $messages);
+
+        if ($request->input('name')) {
+            $evaluacion = new Evaluacion($request->input());
+            $evaluacion->name = strtolower($request->input('name'));
+            $evaluacion->save();
+            return redirect()->route('evaluacion.crear');
+        }
+        return redirect()->route('evaluacion.crear');
+    }
+    #reglas de validacion
+    private function _rules()
+    {
+        $messages = [
+            'name.required' => 'El dia de semana es requerido',
+        ];
+
+        $rules = [
+            'name' => 'required',
+        ];
+
+        return array($rules, $messages);
     }
 
     /**

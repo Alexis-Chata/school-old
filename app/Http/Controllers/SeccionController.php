@@ -24,7 +24,10 @@ class SeccionController extends Controller
      */
     public function create()
     {
-        //
+        $action = route('seccion.guardar');
+        $seccion = new Seccion();
+        $seccions = Seccion::all();
+        return view('seccion.crear')->with(compact('action', 'seccion', 'seccions'));
     }
 
     /**
@@ -35,7 +38,29 @@ class SeccionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        list($rules, $messages) = $this->_rules();
+        $this->validate($request, $rules, $messages);
+
+        if ($request->input('name')) {
+            $seccion = new Seccion($request->input());
+            $seccion->name = strtoupper($request->input('name'));
+            $seccion->save();
+            return redirect()->route('seccion.crear');
+        }
+        return redirect()->route('seccion.crear');
+    }
+    #reglas de validacion
+    private function _rules()
+    {
+        $messages = [
+            'name.required' => 'La seccion es requerida',
+        ];
+
+        $rules = [
+            'name' => 'required',
+        ];
+
+        return array($rules, $messages);
     }
 
     /**

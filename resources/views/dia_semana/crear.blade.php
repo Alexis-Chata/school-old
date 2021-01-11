@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear Año Academico')
+@section('title', 'Crear Dia Semana')
 
 @section('content_header')
     <div class="container">
-        <h1 class="mt-3">Crear Año Academico</h1>
+        <h1 class="mt-3">Crear Dia Semana</h1>
     </div>
 @stop
 
@@ -14,9 +14,9 @@
 
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <p><a href="{{route('anio_academico.crear')}}">Regresar</a></p>
+            <p><a href="{{route('dia_semana.crear')}}">Regresar</a></p>
             <section class="content">
-                @include('anio_academico._form')
+                @include('dia_semana._form')
             </section>
         </div>
     </main>
@@ -29,7 +29,6 @@
                     <th>Name</th>
                     <th>Created_at</th>
                     <th>Update_at</th>
-                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,13 +36,12 @@
                     //print_r($anio);
                 @endphp
 
-                @foreach ($anios as $value)
+                @foreach ($dia_semanas as $value)
                 <tr>
                     <td>{{ $value->id }}</td>
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td>{{ $value->updated_at }}</td>
-                    <td><a href=""></a></td>
                 </tr>
                 @endforeach
             </tbody>

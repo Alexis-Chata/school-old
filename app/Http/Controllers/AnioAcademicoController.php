@@ -38,9 +38,29 @@ class AnioAcademicoController extends Controller
      */
     public function store(Request $request)
     {
-        $anio = new Anio_academico($request->input());
-        $anio->save();
+        list($rules, $messages) = $this->_rules();
+        $this->validate($request, $rules, $messages);
+
+        if ($request->input('name')) {
+            $anio = new Anio_academico($request->input());
+            $anio->save();
+            return redirect()->route('anio_academico.crear');
+        }
         return redirect()->route('anio_academico.crear');
+    }
+    #reglas de validacion
+    private function _rules()
+    {
+        $messages = [
+            'name.required' => 'El año academico es requerido',
+            'name.min' => 'minimo 4 digitos',
+        ];
+
+        $rules = [
+            'name' => 'required|min:4',
+        ];
+
+        return array($rules, $messages);
     }
 
     /**
@@ -62,7 +82,11 @@ class AnioAcademicoController extends Controller
      */
     public function edit(Anio_academico $anio_academico)
     {
-        //
+        $anio = Anio_academico::find($anio_academico);
+        $put = True;
+        $action = route('anio_academico.update', $anio_academico);
+
+        return view('anio_academico.actualizar')->with(compact('anio', 'action', 'put'));
     }
 
     /**
@@ -74,7 +98,11 @@ class AnioAcademicoController extends Controller
      */
     public function update(Request $request, Anio_academico $anio_academico)
     {
-        //
+        $anio = Anio_academico::find($anio_academico);
+        $anio->dni = $request->input('name');
+        $anio->save();
+
+        return redirect()->route('anio_academico.crear');
     }
 
     /**

@@ -38,9 +38,29 @@ class GradoController extends Controller
      */
     public function store(Request $request)
     {
-        $grado = new Grado($request->input());
-        $grado->save();
+        list($rules, $messages) = $this->_rules();
+        $this->validate($request, $rules, $messages);
+
+        if ($request->input('name')) {
+            $grado = new Grado($request->input());
+            $grado->name = strtolower($request->input('name'));
+            $grado->save();
+            return redirect()->route('grado.crear');
+        }
         return redirect()->route('grado.crear');
+    }
+    #reglas de validacion
+    private function _rules()
+    {
+        $messages = [
+            'name.required' => 'El grado es requerido',
+        ];
+
+        $rules = [
+            'name' => 'required',
+        ];
+
+        return array($rules, $messages);
     }
 
     /**
