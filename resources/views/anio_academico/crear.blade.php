@@ -14,7 +14,12 @@
 
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <p><a href="{{route('anio_academico.crear')}}">Regresar</a></p>
+            <p><a href="{{route('anio_academico.create')}}">Regresar</a></p>
+            @if (session('info'))
+                <div class="alert alert-success">
+                    <strong>{{session('info')}}</strong>
+                </div>
+            @endif
             <section class="content">
                 @include('anio_academico._form')
             </section>
@@ -30,6 +35,7 @@
                     <th>Created_at</th>
                     <th>Update_at</th>
                     <th>Edit</th>
+                    <th>delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +49,12 @@
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td>{{ $value->updated_at }}</td>
-                    <td><a href=""></a></td>
+                    <td class="text-center"><a class="btn btn-primary btn-sm" href="{{ route('anio_academico.edit',$value) }}">Editar</a></td>
+                    <td class="text-center"><form action="{{ route('anio_academico.destroy',$value)}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form></td>
                 </tr>
                 @endforeach
             </tbody>

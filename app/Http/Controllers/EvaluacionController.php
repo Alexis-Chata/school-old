@@ -24,7 +24,7 @@ class EvaluacionController extends Controller
      */
     public function create()
     {
-        $action = route('evaluacion.guardar');
+        $action = route('evaluacion.store');
         $evaluacion = new Evaluacion();
         $evaluacions = Evaluacion::all();
         return view('evaluacion.crear')->with(compact('action', 'evaluacion', 'evaluacions'));
@@ -45,9 +45,9 @@ class EvaluacionController extends Controller
             $evaluacion = new Evaluacion($request->input());
             $evaluacion->name = strtolower($request->input('name'));
             $evaluacion->save();
-            return redirect()->route('evaluacion.crear');
+            return redirect()->route('evaluacion.create');
         }
-        return redirect()->route('evaluacion.crear');
+        return redirect()->route('evaluacion.create');
     }
     #reglas de validacion
     private function _rules()

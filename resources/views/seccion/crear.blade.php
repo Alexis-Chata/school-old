@@ -14,7 +14,7 @@
 
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <p><a href="{{route('seccion.crear')}}">Regresar</a></p>
+            <p><a href="{{route('seccion.create')}}">Regresar</a></p>
             <section class="content">
                 @include('seccion._form')
             </section>

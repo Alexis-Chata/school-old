@@ -14,7 +14,7 @@
 
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <p><a href="{{route('grado.crear')}}">Regresar</a></p>
+            <p><a href="{{route('grado.create')}}">Regresar</a></p>
             <section class="content">
                 @include('grado._form')
             </section>

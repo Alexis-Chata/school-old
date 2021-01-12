@@ -24,10 +24,10 @@ class DiaSemanaController extends Controller
      */
     public function create()
     {
-        $action = route('dia_semana.guardar');
+        $action = route('dia_semana.store');
         $dia_semana = new Dia_semana();
         $dia_semanas = Dia_semana::all();
-        return view('dia_semana.crear')->with(compact('action', 'dia_semana', 'dia_semanas'));
+        return view('dia_semana.create')->with(compact('action', 'dia_semana', 'dia_semanas'));
     }
 
     /**
@@ -45,9 +45,9 @@ class DiaSemanaController extends Controller
             $dia_semana = new Dia_semana($request->input());
             $dia_semana->name = strtolower($request->input('name'));
             $dia_semana->save();
-            return redirect()->route('dia_semana.crear');
+            return redirect()->route('dia_semana.create');
         }
-        return redirect()->route('dia_semana.crear');
+        return redirect()->route('dia_semana.create');
     }
     #reglas de validacion
     private function _rules()

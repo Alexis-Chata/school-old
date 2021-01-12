@@ -24,7 +24,7 @@ class SeccionController extends Controller
      */
     public function create()
     {
-        $action = route('seccion.guardar');
+        $action = route('seccion.store');
         $seccion = new Seccion();
         $seccions = Seccion::all();
         return view('seccion.crear')->with(compact('action', 'seccion', 'seccions'));
@@ -45,9 +45,9 @@ class SeccionController extends Controller
             $seccion = new Seccion($request->input());
             $seccion->name = strtoupper($request->input('name'));
             $seccion->save();
-            return redirect()->route('seccion.crear');
+            return redirect()->route('seccion.create');
         }
-        return redirect()->route('seccion.crear');
+        return redirect()->route('seccion.create');
     }
     #reglas de validacion
     private function _rules()

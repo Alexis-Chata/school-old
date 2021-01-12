@@ -13,7 +13,7 @@
 
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <p><a href="{{route('anio_academico.crear')}}">Regresar</a></p>
+            <p><a href="{{route('anio_academico.create')}}">Regresar</a></p>
             <section class="content">
                 @include('anio_academico._form')
             </section>

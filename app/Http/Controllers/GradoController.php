@@ -24,7 +24,7 @@ class GradoController extends Controller
      */
     public function create()
     {
-        $action = route('grado.guardar');
+        $action = route('grado.store');
         $grado = new Grado();
         $grados = Grado::all();
         return view('grado.crear')->with(compact('action', 'grado', 'grados'));
@@ -45,9 +45,9 @@ class GradoController extends Controller
             $grado = new Grado($request->input());
             $grado->name = strtolower($request->input('name'));
             $grado->save();
-            return redirect()->route('grado.crear');
+            return redirect()->route('grado.create');
         }
-        return redirect()->route('grado.crear');
+        return redirect()->route('grado.create');
     }
     #reglas de validacion
     private function _rules()

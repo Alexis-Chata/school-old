@@ -14,7 +14,7 @@
 
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <p><a href="{{route('evaluacion.crear')}}">Regresar</a></p>
+            <p><a href="{{route('evaluacion.create')}}">Regresar</a></p>
             <section class="content">
                 @include('evaluacion._form')
             </section>

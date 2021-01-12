@@ -14,7 +14,7 @@
 
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <p><a href="{{route('dia_semana.crear')}}">Regresar</a></p>
+            <p><a href="{{route('dia_semana.create')}}">Regresar</a></p>
             <section class="content">
                 @include('dia_semana._form')
             </section>

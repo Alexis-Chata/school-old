@@ -231,23 +231,23 @@ return [
             'submenu' => [
                 [
                     'text' => 'Año Academico',
-                    'url'  => 'anio_academico',
+                    'url'  => 'anio_academico/crear',
                 ],
                 [
                     'text' => 'Grado',
-                    'url'  => 'grado',
+                    'url'  => 'grado/crear',
                 ],
                 [
                     'text' => 'Seccion',
-                    'url'  => 'seccion',
+                    'url'  => 'seccion/crear',
                 ],
                 [
                     'text' => 'Dia Semana',
-                    'url'  => 'dia_semana',
+                    'url'  => 'dia_semana/crear',
                 ],
                 [
                     'text' => 'Evaluacion',
-                    'url'  => 'evaluacion',
+                    'url'  => 'evaluacion/crear',
                 ],
             ],
         ],
