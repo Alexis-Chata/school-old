@@ -24,10 +24,11 @@ class GradoController extends Controller
      */
     public function create()
     {
+        $btn_name = 'Registrar';
         $action = route('grado.store');
         $grado = new Grado();
         $grados = Grado::all();
-        return view('grado.crear')->with(compact('action', 'grado', 'grados'));
+        return view('grado.crear')->with(compact('action', 'grado', 'grados', 'btn_name'));
     }
 
     /**
@@ -45,7 +46,7 @@ class GradoController extends Controller
             $grado = new Grado($request->input());
             $grado->name = strtolower($request->input('name'));
             $grado->save();
-            return redirect()->route('grado.create');
+            return redirect()->route('grado.create')->with('info','El grado se creo con exito');
         }
         return redirect()->route('grado.create');
     }
@@ -57,7 +58,7 @@ class GradoController extends Controller
         ];
 
         $rules = [
-            'name' => 'required',
+            'name' => 'required|min:4|unique:grados,name,except,id',
         ];
 
         return array($rules, $messages);
@@ -82,7 +83,11 @@ class GradoController extends Controller
      */
     public function edit(Grado $grado)
     {
-        //
+        $btn_name = 'Actualizar';
+        $put = True;
+        $action = route('grado.update', $grado);
+
+        return view('grado.actualizar')->with(compact('grado', 'action', 'put', 'btn_name'));
     }
 
     /**
@@ -94,7 +99,17 @@ class GradoController extends Controller
      */
     public function update(Request $request, Grado $grado)
     {
-        //
+        $request->validate([
+            'name' => "required|min:4|unique:grados,name,$grado->id",
+        ]);
+
+        if ($request->input('name')) {
+            $grado->name = $request->input('name');
+            $grado->save();
+
+            return redirect()->route('grado.create')->with('info','El grado se actualizo con exito');
+        }
+        return redirect()->route('grado.create');
     }
 
     /**
@@ -105,6 +120,7 @@ class GradoController extends Controller
      */
     public function destroy(Grado $grado)
     {
-        //
+        $grado->delete();
+        return redirect()->route('grado.create')->with('info','El grado se elimino con exito');
     }
 }

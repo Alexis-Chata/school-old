@@ -249,6 +249,10 @@ return [
                     'text' => 'Evaluacion',
                     'url'  => 'evaluacion/crear',
                 ],
+                [
+                    'text' => 'Curso',
+                    'url'  => 'curso/crear',
+                ],
             ],
         ],
         [

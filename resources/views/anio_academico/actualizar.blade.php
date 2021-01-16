@@ -1,11 +1,11 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Editar Alumno')
+@section('title', 'Editar Año Academico')
 
 @section('content_header')
     <div class="container">
-        <h1 class="mt-3">Editar Alumno</h1>
+        <h1 class="mt-3">Editar Año Academico</h1>
     </div>
 @stop
 

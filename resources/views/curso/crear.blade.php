@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear Seccion')
+@section('title', 'Crear Curso')
 
 @section('content_header')
     <div class="container">
-        <h1 class="mt-3">Crear Seccion</h1>
+        <h1 class="mt-3">Crear Curso</h1>
     </div>
 @stop
 
@@ -14,14 +14,9 @@
 
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <p><a href="{{route('seccion.create')}}">Regresar</a></p>
-            @if (session('info'))
-                <div class="alert alert-success">
-                    <strong>{{session('info')}}</strong>
-                </div>
-            @endif
+            <p><a href="{{route('curso.create')}}">Regresar</a></p>
             <section class="content">
-                @include('seccion._form')
+                @include('curso._form')
             </section>
         </div>
     </main>
@@ -43,14 +38,14 @@
                     //print_r($anio);
                 @endphp
 
-                @foreach ($seccions as $value)
+                @foreach ($cursos as $value)
                 <tr>
                     <td>{{ $value->id }}</td>
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td>{{ $value->updated_at }}</td>
-                    <td class="text-center"><a class="btn btn-primary btn-sm" href="{{ route('seccion.edit',$value) }}">Editar</a></td>
-                    <td class="text-center"><form action="{{ route('seccion.destroy',$value)}}" method="POST">
+                    <td class="text-center"><a class="btn btn-primary btn-sm" href="{{ route('curso.edit',$value) }}">Editar</a></td>
+                    <td class="text-center"><form action="{{ route('curso.destroy',$value)}}" method="POST">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>

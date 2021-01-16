@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnioAcademicoController;
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\DiaSemanaController;
 use App\Http\Controllers\EvaluacionController;
 use App\Http\Controllers\GradoController;
@@ -27,7 +28,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::resource('anio_academico', AnioAcademicoController::class)->except(['index', 'show']);
-Route::resource('grado', GradoController::class);
-Route::resource('seccion', SeccionController::class);
-Route::resource('dia_semana', DiaSemanaController::class);
-Route::resource('evaluacion', EvaluacionController::class);
+Route::resource('grado', GradoController::class)->except(['index', 'show']);
+Route::resource('seccion', SeccionController::class)->except(['index', 'show']);
+Route::resource('dia_semana', DiaSemanaController::class)->except(['index', 'show']);
+Route::resource('evaluacion', EvaluacionController::class)->except(['index', 'show']);
+Route::resource('curso', CursoController::class)->except(['index', 'show']);

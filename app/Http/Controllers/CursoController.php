@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anio_academico;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,12 @@ class CursoController extends Controller
      */
     public function create()
     {
-        //
+        $btn_name = 'Registrar';
+        $action = route('curso.store');
+        $curso = new Curso();
+        $cursos = Curso::all();
+        $anios = Anio_academico::all();
+        return view('curso.crear')->with(compact('action', 'curso', 'cursos', 'anios'));
     }
 
     /**
@@ -35,7 +41,29 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        list($rules, $messages) = $this->_rules();
+        $this->validate($request, $rules, $messages);
+
+        if ($request->input('name')) {
+            $curso = new Curso($request->input());
+            $curso->name = strtolower($request->input('name'));
+            $curso->save();
+            return redirect()->route('curso.create')->with('info','El curso se creo con exito');
+        }
+        return redirect()->route('curso.create');
+    }
+    #reglas de validacion
+    private function _rules()
+    {
+        $messages = [
+            'name.required' => 'El curso es requerido',
+        ];
+
+        $rules = [
+            'name' => 'required',
+        ];
+
+        return array($rules, $messages);
     }
 
     /**

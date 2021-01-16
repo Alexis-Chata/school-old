@@ -1,11 +1,11 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Editar Evaluacion')
+@section('title', 'Editar Curso')
 
 @section('content_header')
     <div class="container">
-        <h1 class="mt-3">Editar Evaluacion</h1>
+        <h1 class="mt-3">Editar Curso</h1>
     </div>
 @stop
 
@@ -13,9 +13,9 @@
 
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <p><a href="{{route('evaluacion.create')}}">Regresar</a></p>
+            <p><a href="{{route('curso.create')}}">Regresar</a></p>
             <section class="content">
-                @include('evaluacion._form')
+                @include('curso._form')
             </section>
         </div>
     </main>

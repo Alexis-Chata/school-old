@@ -1,11 +1,11 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Editar Alumno')
+@section('title', 'Editar Grado')
 
 @section('content_header')
     <div class="container">
-        <h1 class="mt-3">Editar Alumno</h1>
+        <h1 class="mt-3">Editar Grado</h1>
     </div>
 @stop
 
@@ -13,9 +13,9 @@
 
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <p><a href="{{route('anio_academico.create')}}">Regresar</a></p>
+            <p><a href="{{route('grado.create')}}">Regresar</a></p>
             <section class="content">
-                @include('anio_academico._form')
+                @include('grado._form')
             </section>
         </div>
     </main>

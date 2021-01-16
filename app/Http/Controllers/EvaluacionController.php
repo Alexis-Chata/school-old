@@ -24,6 +24,7 @@ class EvaluacionController extends Controller
      */
     public function create()
     {
+        $btn_name = 'Registrar';
         $action = route('evaluacion.store');
         $evaluacion = new Evaluacion();
         $evaluacions = Evaluacion::all();
@@ -45,7 +46,7 @@ class EvaluacionController extends Controller
             $evaluacion = new Evaluacion($request->input());
             $evaluacion->name = strtolower($request->input('name'));
             $evaluacion->save();
-            return redirect()->route('evaluacion.create');
+            return redirect()->route('evaluacion.create')->with('info','La evaluacion se creo con exito');
         }
         return redirect()->route('evaluacion.create');
     }
@@ -53,7 +54,7 @@ class EvaluacionController extends Controller
     private function _rules()
     {
         $messages = [
-            'name.required' => 'El dia de semana es requerido',
+            'name.required' => 'La evaluacion es requerido',
         ];
 
         $rules = [
@@ -82,7 +83,11 @@ class EvaluacionController extends Controller
      */
     public function edit(Evaluacion $evaluacion)
     {
-        //
+        $btn_name = 'Actualizar';
+        $put = True;
+        $action = route('evaluacion.update', $evaluacion);
+
+        return view('evaluacion.actualizar')->with(compact('evaluacion', 'action', 'put', 'btn_name'));
     }
 
     /**
@@ -94,7 +99,17 @@ class EvaluacionController extends Controller
      */
     public function update(Request $request, Evaluacion $evaluacion)
     {
-        //
+        $request->validate([
+            'name' => "required|unique:evaluacions,name,$evaluacion->id",
+        ]);
+
+        if ($request->input('name')) {
+            $evaluacion->name = $request->input('name');
+            $evaluacion->save();
+
+            return redirect()->route('evaluacion.create')->with('info','La evaluacion se actualizo con exito');
+        }
+        return redirect()->route('evaluacion.create');
     }
 
     /**
@@ -105,6 +120,7 @@ class EvaluacionController extends Controller
      */
     public function destroy(Evaluacion $evaluacion)
     {
-        //
+        $evaluacion->delete();
+        return redirect()->route('evaluacion.create')->with('info','La evaluacion se elimino con exito');
     }
 }

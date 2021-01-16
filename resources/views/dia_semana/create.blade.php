@@ -15,6 +15,11 @@
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <p><a href="{{route('dia_semana.create')}}">Regresar</a></p>
+            @if (session('info'))
+                <div class="alert alert-success">
+                    <strong>{{session('info')}}</strong>
+                </div>
+            @endif
             <section class="content">
                 @include('dia_semana._form')
             </section>
@@ -29,6 +34,8 @@
                     <th>Name</th>
                     <th>Created_at</th>
                     <th>Update_at</th>
+                    <th>Edit</th>
+                    <th>delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +49,12 @@
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td>{{ $value->updated_at }}</td>
+                    <td class="text-center"><a class="btn btn-primary btn-sm" href="{{ route('dia_semana.edit',$value) }}">Editar</a></td>
+                    <td class="text-center"><form action="{{ route('dia_semana.destroy',$value)}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form></td>
                 </tr>
                 @endforeach
             </tbody>
